@@ -26,10 +26,13 @@ jobs:
               continue
             fi
             echo "Checking $site"
-            status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 15 -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3" "https://$site")
-            echo "Status code: $status_code"
-            if [[ $status_code -eq 200 || $status_code -eq 403 ]]; then
-              echo "$site: 🟢" >> README.md
+            if status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 15 -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3" "https://$site"); then
+              echo "Status code: $status_code"
+              if [[ $status_code -eq 200 || $status_code -eq 403 ]]; then
+                echo "$site: 🟢" >> README.md
+              else
+                echo "$site: 🔴" >> README.md
+              fi
             else
               echo "$site: 🔴" >> README.md
             fi
