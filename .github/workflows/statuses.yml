@@ -37,6 +37,7 @@ jobs:
             else
               echo "$site: 🔴" >> website_status.md
             fi
+            echo >> website_status.md  # Append a newline
           done
 
       - name: Update README
