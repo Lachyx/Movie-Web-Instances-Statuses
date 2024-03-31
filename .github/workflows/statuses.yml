@@ -25,7 +25,7 @@ jobs:
             if [[ -z "$site" ]]; then
               continue
             fi
-            status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 7 "https://$site")
+           status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 15 "https://$site")
             if [ $status_code -eq 200 ]; then
               echo "$site: 🟢" >> README.md
             else
