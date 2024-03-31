@@ -1,4 +1,6 @@
 # Movie-Web Instances Statuses
+movie-web.app: 🔴
+
 mw.lonelil.ru: 🟢
 
 mw.lonelil.com: 🟢
