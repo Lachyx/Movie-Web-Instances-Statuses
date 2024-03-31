@@ -20,17 +20,11 @@ jobs:
       - name: Check website status
         id: check_websites
         run: |
-          sites=(
-            "mw.lonelil.ru"
-            "watch.qtchaos.de"
-            "bmov.vercel.app"
-            "stream.thehairy.me"
-            "movie-web-me.vercel.app"
-            "scootydooter.vercel.app"
-            "sudo-flix.lol"
-          )
           echo '# Movie-Web Instances Statuses' > README.md
-          for site in "${sites[@]}"; do
+          while IFS= read -r site; do
+            if [[ -z "$site" ]]; then
+              continue
+            fi
             status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 7 "https://$site")
             if [ $status_code -eq 200 ]; then
               echo "$site: 🟢" >> README.md
@@ -38,7 +32,7 @@ jobs:
               echo "$site: 🔴" >> README.md
             fi
             echo >> README.md
-          done
+          done < sites.txt
 
       - name: Commit and push if changed
         run: |
