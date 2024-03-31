@@ -7,5 +7,3 @@ stream.thehairy.me
 movie-web-me.vercel.app
 scootydooter.vercel.app
 sudo-flix.lol
-mw-backend.lonelil.com
-mw-backend.lonelil.ru
