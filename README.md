@@ -1,5 +1,5 @@
 # Movie-Web Instances Statuses
-mw.lonelil.com: 🔴
+mw.lonelil.ru: 🔴
 
 watch.qtchaos.de: 🟢
 
