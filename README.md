@@ -17,7 +17,3 @@
 
 [sudo-flix.lol](https://sudo-flix.lol): 🟢
 
-[mw-backend.lonelil.com](https://mw-backend.lonelil.com): 🟢
-
-[mw-backend.lonelil.ru](https://mw-backend.lonelil.ru): 🟢
-
