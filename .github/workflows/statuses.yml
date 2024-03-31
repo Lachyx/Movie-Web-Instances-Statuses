@@ -2,7 +2,7 @@ name: Check Instances Statuses
 
 on:
   schedule:
-    - cron:  '*/10 * * * *'
+    - cron:  '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -27,9 +27,9 @@ jobs:
         for site in "${sites[@]}"; do
           status_code=$(curl --write-out %{http_code} --silent --output /dev/null "https://$site")
           if [ $status_code -eq 200 ]; then
-            echo "$site: ONLINE"
+            echo "$site: 🟢"
           else
-            echo "$site: OFFLINE"
+            echo "$site: 🔴"
           fi
         done > website_status.txt
 
