@@ -21,7 +21,7 @@ jobs:
         id: check_websites
         run: |
           sites=(
-            "mw.lonelil.com"
+            "mw.lonelil.ru"
             "watch.qtchaos.de"
             "bmov.vercel.app"
             "stream.thehairy.me"
