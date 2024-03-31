@@ -21,7 +21,7 @@ jobs:
         id: check_websites
         run: |
           sites=(
-            "mw.lonelil.ru"
+            "mw.lonelil.com"
             "watch.qtchaos.de"
             "bmov.vercel.app"
             "stream.thehairy.me"
@@ -29,26 +29,21 @@ jobs:
             "scootydooter.vercel.app"
             "sudo-flix.lol"
           )
-          echo 'Website Statuses:' > website_status.md
+          echo '# Movie-Web Instances Statuses' > README.md
           for site in "${sites[@]}"; do
-            status_code=$(curl --write-out %{http_code} --silent --output /dev/null "https://$site")
+            status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 7 "https://$site")
             if [ $status_code -eq 200 ]; then
-              echo "$site: 🟢" >> website_status.md
+              echo "$site: 🟢" >> README.md
             else
-              echo "$site: 🔴" >> website_status.md
+              echo "$site: 🔴" >> README.md
             fi
-            echo >> website_status.md  # Append a newline
+            echo >> README.md
           done
-
-      - name: Update README
-        run: |
-          sed -i '/## Website Statuses/,$d' README.md
-          cat website_status.md >> README.md
 
       - name: Commit and push if changed
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
           git add README.md
-          git diff --staged --quiet || git commit -m "Update website statuses"
+          git diff --staged --quiet || git commit -m "Update README with Movie-Web Instances Statuses"
           git push
