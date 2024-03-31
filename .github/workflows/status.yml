@@ -1,0 +1,44 @@
+name: Check Instances Statuses
+
+on:
+  schedule:
+    - cron:  '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check-status:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check website status
+      id: check_websites
+      run: |
+        sites=(
+          "mw.lonelil.com"
+          "watch.qtchaos.de"
+          "bmov.vercel.app"
+          "stream.thehairy.me"
+          "movie-web-me.vercel.app"
+          "scootydooter.vercel.app"
+          "sudo-flix.lol"
+        )
+
+        for site in "${sites[@]}"; do
+          status_code=$(curl --write-out %{http_code} --silent --output /dev/null "https://$site")
+          if [ $status_code -eq 200 ]; then
+            echo "$site: ONLINE"
+          else
+            echo "$site: OFFLINE"
+          fi
+        done > website_status.txt
+
+    - name: Update README
+      if: always()
+      run: |
+        cat website_status.txt > status.txt
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add status.txt
+        git commit -m "Update website status"
+        git push
