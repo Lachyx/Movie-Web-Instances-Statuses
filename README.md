@@ -1,1 +1,1 @@
-# movie-web-instances-status
+# movie-web-instances-statuses
