@@ -1,44 +1,51 @@
-name: Check Instances Statuses
+name: Update README with Website Statuses
 
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron: '/5 * * * *'
   workflow_dispatch:
+  push:
+    branches: ['master', 'main']
 
 jobs:
-  check-status:
+  update-readme:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Check website status
-      id: check_websites
-      run: |
-        sites=(
-          "mw.lonelil.com"
-          "watch.qtchaos.de"
-          "bmov.vercel.app"
-          "stream.thehairy.me"
-          "movie-web-me.vercel.app"
-          "scootydooter.vercel.app"
-          "sudo-flix.lol"
-        )
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-        for site in "${sites[@]}"; do
-          status_code=$(curl --write-out %{http_code} --silent --output /dev/null "https://$site")
-          if [ $status_code -eq 200 ]; then
-            echo "$site: 🟢"
-          else
-            echo "$site: 🔴"
-          fi
-        done > website_status.txt
+      - name: Check website status
+        id: check_websites
+        run: |
+          sites=(
+            "mw.lonelil.com"
+            "watch.qtchaos.de"
+            "bmov.vercel.app"
+            "stream.thehairy.me"
+            "movie-web-me.vercel.app"
+            "scootydooter.vercel.app"
+            "sudo-flix.lol"
+          )
+          echo 'Website Statuses:' > website_status.md
+          for site in "${sites[@]}"; do
+            status_code=$(curl --write-out %{http_code} --silent --output /dev/null "https://$site")
+            if [ $status_code -eq 200 ]; then
+              echo "$site: 🟢" >> website_status.md
+            else
+              echo "$site: 🔴" >> website_status.md
+            fi
+          done
 
-    - name: Update README
-      if: always()
-      run: |
-        cat website_status.txt > status.txt
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        git add status.txt
-        git commit -m "Update website status"
-        git push
+      - name: Update README
+        run: |
+          sed -i '/## Website Statuses/,$d' README.md
+          cat website_status.md >> README.md
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add README.md
+          git diff --staged --quiet || git commit -m "Update website statuses"
+          git push
