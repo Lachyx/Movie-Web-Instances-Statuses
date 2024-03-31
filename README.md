@@ -1,7 +1,6 @@
 # movie-web-instances-statuses
 
-## Website Statuses:
-
+Website Statuses:
 mw.lonelil.com: 🔴
 
 watch.qtchaos.de: 🟢
