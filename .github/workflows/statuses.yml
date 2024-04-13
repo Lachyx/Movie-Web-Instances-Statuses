@@ -1,49 +1,49 @@
-name: Update README with Website Statuses
+# name: Update README with Website Statuses
 
-on:
-  schedule:
-    - cron: '*/5 * * * *'
-  workflow_dispatch:
-  push:
-    branches: ['master', 'main']
+# on:
+#   schedule:
+#     - cron: '*/5 * * * *'
+#   workflow_dispatch:
+#   push:
+#     branches: ['master', 'main']
 
-jobs:
-  update-readme:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+# jobs:
+#   update-readme:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Check website status
-        id: check_websites
-        run: |
-          echo '# Movie-Web Instances Statuses' > README.md
-          while IFS= read -r site; do
-            if [[ -z "$site" ]]; then
-              continue
-            fi
-            echo "Checking $site"
-            siteURL="https://$site"
-            if status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 15 -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3" "$siteURL"); then
-              echo "Status code: $status_code"
-              if [[ $status_code -eq 200 || $status_code -eq 403 ]]; then
-                echo "[$site]($siteURL): 🟢" >> README.md
-              else
-                echo "[$site]($siteURL): 🔴" >> README.md
-              fi
-            else
-              echo "[$site]($siteURL): 🔴" >> README.md
-            fi
-            echo >> README.md
-          done < sites.txt
+#       - name: Check website status
+#         id: check_websites
+#         run: |
+#           echo '# Movie-Web Instances Statuses' > README.md
+#           while IFS= read -r site; do
+#             if [[ -z "$site" ]]; then
+#               continue
+#             fi
+#             echo "Checking $site"
+#             siteURL="https://$site"
+#             if status_code=$(curl --write-out %{http_code} --silent --output /dev/null --max-time 15 -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3" "$siteURL"); then
+#               echo "Status code: $status_code"
+#               if [[ $status_code -eq 200 || $status_code -eq 403 ]]; then
+#                 echo "[$site]($siteURL): 🟢" >> README.md
+#               else
+#                 echo "[$site]($siteURL): 🔴" >> README.md
+#               fi
+#             else
+#               echo "[$site]($siteURL): 🔴" >> README.md
+#             fi
+#             echo >> README.md
+#           done < sites.txt
 
-      - name: Commit and push if changed
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add README.md
-          git diff --staged --quiet || git commit -m "Update README with Movie-Web Instances Statuses"
-          git push
+#       - name: Commit and push if changed
+#         run: |
+#           git config --global user.name 'GitHub Actions'
+#           git config --global user.email 'actions@github.com'
+#           git add README.md
+#           git diff --staged --quiet || git commit -m "Update README with Movie-Web Instances Statuses"
+#           git push
