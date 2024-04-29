@@ -9,7 +9,7 @@
 
 [bmov.vercel.app](https://bmov.vercel.app): 🟢
 
-[stream.thehairy.me](https://stream.thehairy.me): 🟢
+[stream.thehairy.me](https://stream.thehairy.me): 🔴
 
 [movie-web-me.vercel.app](https://movie-web-me.vercel.app): 🟢
 
