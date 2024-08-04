@@ -1,3 +1,4 @@
+[![Update README with Website Statuses](https://github.com/Lachyx/Movie-Web-Instances-Statuses/actions/workflows/statuses.yml/badge.svg)](https://github.com/Lachyx/Movie-Web-Instances-Statuses/actions/workflows/statuses.yml)
 # Movie-Web Instances Statuses
 [movie-web.app](https://movie-web.app): 🔴
 
