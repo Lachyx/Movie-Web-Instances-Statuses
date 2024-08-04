@@ -1,4 +1,3 @@
-[![Update README with Website Statuses](https://github.com/Lachyx/Movie-Web-Instances-Statuses/actions/workflows/statuses.yml/badge.svg)](https://github.com/Lachyx/Movie-Web-Instances-Statuses/actions/workflows/statuses.yml)
 # Movie-Web Instances Statuses
 [movie-web.app](https://movie-web.app): 🔴
 
@@ -6,7 +5,7 @@
 
 [mw.lonelil.com](https://mw.lonelil.com): 🟢
 
-[watch.qtchaos.de](https://watch.qtchaos.de): 🟢
+[watch.qtchaos.de](https://watch.qtchaos.de): 🔴
 
 [bmov.vercel.app](https://bmov.vercel.app): 🟢
 
@@ -16,5 +15,5 @@
 
 [scootydooter.vercel.app](https://scootydooter.vercel.app): 🟢
 
-[sudo-flix.lol](https://sudo-flix.lol): 🟢
+[sudo-flix.lol](https://sudo-flix.lol): 🔴
 
