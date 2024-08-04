@@ -7,3 +7,6 @@ stream.thehairy.me
 movie-web-me.vercel.app
 scootydooter.vercel.app
 sudo-flix.lol
+pseudo-flix.pro
+vidbinge.com
+movies.levrx.lol
