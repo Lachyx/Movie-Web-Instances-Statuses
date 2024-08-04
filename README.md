@@ -17,3 +17,9 @@
 
 [sudo-flix.lol](https://sudo-flix.lol): 🔴
 
+[pseudo-flix.pro](https://pseudo-flix.pro): 🟢
+
+[vidbinge.com](https://vidbinge.com): 🟢
+
+[movies.levrx.lol](https://movies.levrx.lol): 🟢
+
